@@ -7,6 +7,7 @@ Template.body.events({
 		var btitle = event.target.urltitle.value;
 		var burl = event.target.url.value;
 		var bdescription = event.target.urldescription.value;
+		var bcategory = event.target.urlcategory.value;
 
 		//Validate that title is entered
 		if (btitle == "") {
@@ -23,22 +24,27 @@ Template.body.events({
 		//Validate that URL is unique - no duplicate bookmarks
 		var isUnique = Meteor.call("isUniquebookmark", burl);
 
-		if ( isUnique == undefined) {
+		if ( isUnique !== undefined) {
 			alert( "Someone has already added this bookmark!" );
 			return false;
 		}
 
-		Meteor.call("addBookmark", btitle, burl, bdescription);
+		if (bcategory == "") {
+			bcategory = "General";
+		}
+
+		Meteor.call("addBookmark", btitle, burl, bdescription, bcategory);
 
 		//Clear form
 		event.target.urltitle.value = "";
 		event.target.url.value = "";
 		event.target.urldescription.value = "";
+		event.target.urlcategory.value = "";
 	}
 });
 
 Template.body.helpers({
 	bookmarks: function() {
-		return Bookmarks.find({}, {sort: {createdAt: 1}, limit: 1});
+		return Bookmarks.find({}, {sort: {createdAt: 1}, limit: 5});
 	}
 });

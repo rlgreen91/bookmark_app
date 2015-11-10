@@ -10,7 +10,8 @@
   <form class="new-bookmark">
   	Title*: <input type="text" name="urltitle" placeholder="Add a title for the bookmark" /><BR><BR>
   	URL*: <input type="text" name="url" placeholder="Add a URL for the bookmark" /><BR><BR>
-  	Description:<input type="text" name="urldescription" placeholder="Add a description for the bookmark" /><BR><BR>	
+  	Description: <input type="text" name="urldescription" placeholder="Add a description for the bookmark" /><BR><BR>
+  	Category: <input type="text" name="urlcategory" placeholder="Add a category for the bookmark" /><BR><BR>
   	<input type="submit" value="Add bookmark" />
   </form>
 
@@ -25,5 +26,5 @@
 </body>
 
 <template name="bookmark">
-	<li><a href={{url}}>{{url_title}}</a> - {{url_description}}</li>
+	<li><a href={{url}}>{{url_title}}</a> - {{url_description}} - in {{url_category}}</li>
 </template>
