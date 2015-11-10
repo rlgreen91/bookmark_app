@@ -20,6 +20,14 @@ Template.body.events({
 			return false;
 		}
 
+		//Validate that URL is unique - no duplicate bookmarks
+		var isUnique = Meteor.call("isUniquebookmark", burl);
+
+		if ( isUnique == undefined) {
+			alert( "Someone has already added this bookmark!" );
+			return false;
+		}
+
 		Meteor.call("addBookmark", btitle, burl, bdescription);
 
 		//Clear form

@@ -7,5 +7,10 @@ Meteor.methods({
 			url_description: urldescription,
 			createdAt: new Date()
 		});
+	},
+
+	isUniquebookmark: function(url) {
+		var old_bookmark = Bookmarks.findOne({url: url});
+		return old_bookmark
 	}
 });
