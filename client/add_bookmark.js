@@ -33,7 +33,7 @@ Template.body.events({
 			bcategory = "General";
 		}
 
-		console.log(Meteor.userId());
+		//console.log(Meteor.userId());
 
 		Meteor.call("addBookmark", btitle, burl, bdescription, bcategory);
 
@@ -50,3 +50,9 @@ Template.body.helpers({
 		return Bookmarks.find({}, {sort: {createdAt: 1}, limit: 5});
 	}
 });
+
+Template.bookmark.events({
+	"click .delete": function() {
+		Meteor.call("deleteBookmark", this._id);
+	}
+})

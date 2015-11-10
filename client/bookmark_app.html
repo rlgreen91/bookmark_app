@@ -27,5 +27,8 @@
 </body>
 
 <template name="bookmark">
-	<li><a href={{url}}>{{url_title}}</a> - {{url_description}} - in {{url_category}}</li>
+	<li>
+		<a href={{url}}>{{url_title}}</a> - {{url_description}} - in {{url_category}}
+		<button class="delete">Delete bookmark</button>
+	</li>
 </template>

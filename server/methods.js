@@ -10,6 +10,10 @@ Meteor.methods({
 		});
 	},
 
+	deleteBookmark: function (bookmarkId) {
+		Bookmarks.remove(bookmarkId);
+	},
+
 	isUniquebookmark: function(url) {
 		var old_bookmark = Bookmarks.findOne({url: url});
 		return old_bookmark
