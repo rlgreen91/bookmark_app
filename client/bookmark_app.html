@@ -16,9 +16,14 @@
 
   <h5>All fields marked with an asterisk (*) are required</h5>
 
+  <ul>
+  	{{#each bookmarks}}
+  		{{> bookmark}}
+  	{{/each}}
+  </ul>
+
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="bookmark">
+	<li>{{url}}</li>
 </template>
