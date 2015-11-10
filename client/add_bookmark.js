@@ -33,6 +33,8 @@ Template.body.events({
 			bcategory = "General";
 		}
 
+		console.log(Meteor.userId());
+
 		Meteor.call("addBookmark", btitle, burl, bdescription, bcategory);
 
 		//Clear form
