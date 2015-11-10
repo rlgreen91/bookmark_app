@@ -52,7 +52,11 @@ Template.body.helpers({
 });
 
 Template.bookmark.events({
-	"click .delete": function() {
+	"click .delete": function(event) {
+		Meteor.call("deleteBookmark", this._id);
+	},
+
+	"click .edit": function(event) {
 		Meteor.call("deleteBookmark", this._id);
 	}
-})
+});
