@@ -9,29 +9,33 @@ Template.body.events({
 		var bdescription = event.target.urldescription.value;
 		var bcategory = event.target.urlcategory.value;
 
-		//Validate that title is entered
-		if (btitle == "") {
+		//Validate that title and URL are entered and description is no more than 300 characters
+		if ( btitle == "" ) {
 			alert( "You must list a title" );
 			return false;
-		}
-
-		//Validate that URL is entered
-		if (burl == "") {
+		} else if ( burl == "") {
 			alert( "You must include the URL" );
+			return false;
+		} else if ( bdescription.length > 300 ) {
+			alert( "Description can have a maximum of 300 characters")
 			return false;
 		}
 
 		//Validate that URL is unique - no duplicate bookmarks
-		var isUnique = Meteor.call("isUniquebookmark", burl);
+		var isUnique =  Meteor.call("isUniquebookmark", burl, function(error, result){
+		 	if (error) {
+		 		console.log(error)
+		 	} else {
+				return result.content;
+		 	}			
+		 });
+		console.log(isUnique)
 
 		if ( isUnique !== undefined) {
 			alert( "Someone has already added this bookmark!" );
 			return false;
 		}
 
-		if (bcategory == "") {
-			bcategory = "General";
-		}
 
 		//console.log(Meteor.userId());
 
