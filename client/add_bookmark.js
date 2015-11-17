@@ -64,3 +64,35 @@ Template.bookmark.events({
 		Meteor.call("deleteBookmark", this._id);
 	}
 });
+
+Template.bookmark.helpers({
+	noCategoryOnly: function() {
+		var category = this.url_category;
+		var description = this.url_description;
+		if ( (category == "") && (description !== "") ) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+
+	noCategoryandDescription: function() {
+		var category = this.url_category;
+		var description = this.url_description;
+		if ( (category == "") && (description == "") ) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+
+	noDescriptionOnly: function() {
+		var category = this.url_category;
+		var description = this.url_description;
+		if ( (description == "") && (category !== "") ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+});
