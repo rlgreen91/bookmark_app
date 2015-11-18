@@ -21,25 +21,13 @@ Template.body.events({
 			return false;
 		}
 
-		//Validate that URL is unique - no duplicate bookmarks
-		var isUnique =  Meteor.call("isUniquebookmark", burl, function(error, result){
-		 	if (error) {
-		 		console.log(error)
-		 	} else {
-				return result.content;
-		 	}			
-		 });
-		console.log(isUnique)
-
-		if ( isUnique !== undefined) {
-			alert( "Someone has already added this bookmark!" );
-			return false;
-		}
-
-
-		//console.log(Meteor.userId());
-
-		Meteor.call("addBookmark", btitle, burl, bdescription, bcategory);
+		//Add bookmark.  If there is an error, display the reason in an alert.
+		Meteor.call("addBookmark", btitle, burl, bdescription, bcategory, function(error, result) {
+			if (error) {
+				alert( error.reason );
+				return false;
+			}
+		});
 
 		//Clear form
 		event.target.urltitle.value = "";
