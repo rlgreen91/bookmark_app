@@ -49,17 +49,30 @@ Template.body.events({
 
 Template.body.helpers({
 	bookmarks: function() {
-		return Bookmarks.find({}, {sort: {createdAt: 1}, limit: 5});
+		if ( Meteor.user() !== null ) {
+			return Bookmarks.find({owner: Meteor.userId()}, {sort: {createdAt: 1}, limit: 10});
+		} else {
+			return Bookmarks.find({}, {sort: {createdAt: 1}, limit: 10});
+		}
 	}
 });
 
 Template.bookmark.events({
 	"click .delete": function(event) {
-		//if ( (Meteor.user() == undefined) || (this.))
+		if ( (Meteor.user() == null) || (this.owner !== Meteor.userId()) ){
+			alert( "Only the bookmark creator can delete the bookmark" );
+			return false;
+		}
+
 		Meteor.call("deleteBookmark", this._id);
 	},
 
 	"click .edit": function(event) {
+		if ( (Meteor.user() == null) || (this.owner !== Meteor.userId()) ) {
+			alert( "Only the bookmark creator can edit the bookmark" );
+			return false;
+		}
+
 		Meteor.call("deleteBookmark", this._id);
 	}
 });
