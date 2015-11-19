@@ -1,5 +1,5 @@
 Meteor.methods({
-	addBookmark: function (urltitle, url, urldescription, urlcategory) {
+	addBookmark: function (urltitle, url, urldescription, urlcategory, urlowner, username) {
 		//Before inserting, check to see if the bookmark has previously been added.  If so, return error.
 		var isUnique = Meteor.call("isUniquebookmark", url);
 
@@ -12,7 +12,9 @@ Meteor.methods({
 			url: url,
 			url_description: urldescription,
 			url_category: urlcategory,
-			createdAt: new Date()
+			createdAt: new Date(),
+			owner: urlowner,
+			username: username
 		});
 	},
 

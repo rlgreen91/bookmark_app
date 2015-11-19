@@ -27,34 +27,72 @@
 </body>
 
 <template name="bookmark">
+	{{#if noUserCategoryandDescription}}
+		<li>
+			<a href={{url}}>{{url_title}}</a>
+			<button class="edit">Edit bookmark</button>
+			<button class="delete">Delete bookmark</button>
+		</li>
+	{{/if}}
+
 	{{#if noCategoryandDescription}}
 		<li>
 			<a href={{url}}>{{url_title}}</a>
 			<button class="edit">Edit bookmark</button>
 			<button class="delete">Delete bookmark</button>
 		</li>
-	{{else}}
-		{{#if noCategoryOnly}}
-			<li>
-				<a href={{url}}>{{url_title}}</a> - {{url_description}}
-				<button class="edit">Edit bookmark</button>
-				<button class="delete">Delete bookmark</button>
-			</li>
-		{{else}}
-			{{#if noDescriptionOnly}}
-				<li>
-					<a href={{url}}>{{url_title}}</a> in {{url_category}}
-					<button class="edit">Edit bookmark</button>
-					<button class="delete">Delete bookmark</button>
-				</li>
-			{{else}}
-				<li>
-					<a href={{url}}>{{url_title}}</a> - {{url_description}} in {{url_category}}
-					<button class="edit">Edit bookmark</button>
-					<button class="delete">Delete bookmark</button>
-				</li>
-			{{/if}}
-		{{/if}}
+		Added by {{username}}
+	{{/if}}
+
+	{{#if noCategoryOnly}}
+		<li>
+			<a href={{url}}>{{url_title}}</a> - {{url_description}}
+			<button class="edit">Edit bookmark</button>
+			<button class="delete">Delete bookmark</button>
+		</li>			
+		Added by {{username}}
+	{{/if}}
+
+	{{#if noDescriptionOly}}
+		<li>
+			<a href={{url}}>{{url_title}}</a> in {{url_category}}
+			<button class="edit">Edit bookmark</button>
+			<button class="delete">Delete bookmark</button>
+		</li>	
+		Added by {{username}}
+	{{/if}}
+
+	{{#if noUserandDescription}}
+		<li>
+			<a href={{url}}>{{url_title}}</a> in {{url_category}}
+			<button class="edit">Edit bookmark</button>
+			<button class="delete">Delete bookmark</button>
+		</li>
+	{{/if}}
+
+	{{#if noUserandCategory}}
+		<li>
+			<a href={{url}}>{{url_title}}</a> - {{url_description}}
+			<button class="edit">Edit bookmark</button>
+			<button class="delete">Delete bookmark</button>
+		</li>
+	{{/if}}
+
+	{{#if noUserOnly}}
+		<li>
+			<a href={{url}}>{{url_title}}</a> - {{url_description}} in {{url_category}}
+			<button class="edit">Edit bookmark</button>
+			<button class="delete">Delete bookmark</button>
+		</li>
+	{{/if}}
+
+	{{#if allPresent}}
+		<li>
+			<a href={{url}}>{{url_title}}</a> - {{url_description}} in {{url_category}}
+			<button class="edit">Edit bookmark</button>
+			<button class="delete">Delete bookmark</button>
+		</li>				
+		Added by {{username}}
 	{{/if}}
 </template>
 
